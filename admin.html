@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#f7f3ee">
+  <title>Administration — AROVIA</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="admin.js" defer></script>
+</head>
+<body class="admin-body">
+  <header class="site-header admin-header">
+    <a class="wordmark" href="index.html" aria-label="Retour à AROVIA">AROVIA<span class="wordmark-dot">.</span></a>
+    <a class="text-link" href="index.html">Voir la boutique ↗</a>
+  </header>
+
+  <main class="admin-main">
+    <section class="admin-panel admin-login-panel" id="loginPanel">
+      <p class="eyebrow">ESPACE PRIVÉ</p>
+      <h1 class="admin-title">Administration AROVIA</h1>
+      <p class="admin-lead">Connectez-vous pour gérer les produits, les formats et les images du catalogue.</p>
+      <p class="admin-message" id="loginMessage" role="status" aria-live="polite" hidden></p>
+      <form class="login-form" id="loginForm">
+        <div class="form-field"><label for="adminPassword">Mot de passe administrateur</label><input id="adminPassword" name="password" type="password" autocomplete="current-password" required maxlength="200"></div>
+        <button class="button button-dark button-full" id="loginButton" type="submit">Se connecter <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="secure-note">Session sécurisée côté serveur · expiration après 30 minutes</p>
+    </section>
+
+    <section class="admin-panel is-hidden" id="adminPanel">
+      <div class="admin-toolbar">
+        <div><p class="eyebrow">GESTION DU CATALOGUE</p><h1>Vos produits.</h1><p id="catalogMeta">Chargement du catalogue…</p></div>
+        <div class="admin-product-actions"><button class="button button-dark" id="newProductBtn" type="button">+ Nouveau produit</button><button class="button button-outline" id="logoutBtn" type="button">Déconnexion</button></div>
+      </div>
+      <p class="admin-message" id="adminMessage" role="status" aria-live="polite" hidden></p>
+      <div class="admin-products" id="adminProducts"></div>
+      <p class="catalog-footnote">Archiver masque un produit dans la boutique sans supprimer son historique de commandes. Les images téléversées deviennent accessibles par lien public, donc n’utilisez que des photos destinées aux clients.</p>
+    </section>
+  </main>
+
+  <dialog class="modal" id="productDialog" aria-labelledby="productDialogTitle">
+    <div class="modal-header"><div><p class="eyebrow">CATALOGUE AROVIA</p><h2 id="productDialogTitle">Nouveau produit</h2></div><button class="icon-button" id="closeProductDialog" type="button" aria-label="Fermer">×</button></div>
+    <form id="productForm">
+      <div class="admin-form" style="margin-top:19px">
+        <div class="form-field"><label for="productId">Identifiant *</label><input id="productId" name="id" type="text" maxlength="60" pattern="[a-z0-9]+(-[a-z0-9]+)*" required><span class="muted-label">Lettres minuscules, chiffres et tirets. Stable après création.</span></div>
+        <div class="form-field"><label for="productName">Nom du produit *</label><input id="productName" name="name" type="text" maxlength="100" required></div>
+        <div class="form-field"><label for="productCategory">Catégorie *</label><select id="productCategory" name="category" required><option value="femelle">Pour elle</option><option value="homme">Pour lui</option></select></div>
+        <div class="form-field"><label for="productBadge">Badge (facultatif)</label><input id="productBadge" name="badge" type="text" maxlength="40" placeholder="BEST VALUE"></div>
+        <div class="form-field full"><label for="productDescription">Description</label><textarea id="productDescription" name="description" maxlength="600" rows="3" placeholder="Quelques mots sur la fragrance…"></textarea></div>
+        <div class="form-field"><label for="productSortOrder">Ordre d’affichage</label><input id="productSortOrder" name="sortOrder" type="number" min="0" max="9999" step="1" value="999"></div>
+        <div class="form-field checkbox-field"><input id="productActive" name="active" type="checkbox" checked><label for="productActive">Produit visible dans la boutique</label></div>
+        <div class="form-field full"><label>Formats et prix (DH) *</label><div class="price-editor" id="priceEditor"></div><button class="small-button" id="addPriceBtn" type="button">+ Ajouter un format</button></div>
+        <div class="form-field full"><label for="productImage">Photo du produit</label><div class="upload-row"><input id="productImage" type="file" accept="image/jpeg,image/png,image/webp"><button class="small-button" id="uploadImageBtn" type="button">Téléverser l’image</button></div><div class="image-preview" id="imagePreview"><div class="admin-thumb">A.</div><p>Choisissez une photo, puis téléversez-la avant d’enregistrer.</p></div></div>
+      </div>
+      <p class="admin-message" id="editorMessage" role="status" aria-live="polite" hidden></p>
+      <div class="admin-form-actions"><button class="button button-outline" id="cancelProductBtn" type="button">Annuler</button><button class="button button-dark" id="saveProductBtn" type="submit">Enregistrer le produit</button></div>
+    </form>
+  </dialog>
+  <div class="toast" id="adminToast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

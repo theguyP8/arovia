@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3ee">
+  <meta name="description" content="AROVIA, des parfums de caractère en formats faciles à emporter. Découvrez notre sélection et commandez au Maroc.">
+  <title>AROVIA — Small bottles, big scents.</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body class="storefront">
+  <div class="announcement">Des parfums de caractère, en formats à emporter <span>·</span> Livraison au Maroc</div>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="AROVIA, accueil">AROVIA<span class="wordmark-dot">.</span></a>
+    <button class="mobile-menu" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Ouvrir le menu"><span></span><span></span></button>
+    <nav class="main-nav" id="mainNav" aria-label="Navigation principale">
+      <a href="#collection">La collection</a>
+      <a href="#maison">La maison</a>
+      <a href="#livraison">Livraison</a>
+    </nav>
+    <button class="cart-trigger" id="cartOpenBtn" type="button" aria-label="Ouvrir le panier">
+      <span>Panier</span><span class="cart-count" id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> L’ART DU SILLAGE, EN PETIT FORMAT</p>
+        <h1>Small bottles.<br><em>Big scents.</em></h1>
+        <p class="hero-description">Une sélection de parfums qui laissent une impression. Vos signatures olfactives, dans des formats pensés pour vous suivre partout.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#collection">Découvrir la collection <span aria-hidden="true">↗</span></a>
+          <span class="hero-note">5 ml · 10 ml · Packs sélectionnés</span>
+        </div>
+        <div class="hero-proof"><span class="proof-dot"></span><span>Une fragrance pour chaque humeur.</span></div>
+      </div>
+      <div class="hero-art" aria-label="Composition parfum minimaliste" role="img">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="art-sun"></div>
+        <div class="bottle bottle-back"><div class="bottle-cap"></div><div class="bottle-label">AROVIA<br><small>PARFUM</small></div></div>
+        <div class="bottle bottle-front"><div class="bottle-cap"></div><div class="bottle-label">AROVIA<br><small>EAU DE PARFUM</small></div></div>
+        <span class="art-caption">01 / YOUR SIGNATURE</span>
+      </div>
+    </section>
+
+    <section class="catalog-section section-shell" id="collection">
+      <div class="section-heading">
+        <div><p class="eyebrow">LA SÉLECTION AROVIA</p><h2>Find your <em>signature.</em></h2></div>
+        <p class="section-intro">Des essentiels à découvrir, à collectionner et à emporter.</p>
+      </div>
+      <div class="catalog-toolbar">
+        <div class="filter-group" role="group" aria-label="Filtrer les parfums">
+          <button type="button" class="filter-button is-active" data-category="all" aria-pressed="true">Tout voir</button>
+          <button type="button" class="filter-button" data-category="femelle" aria-pressed="false">Pour elle</button>
+          <button type="button" class="filter-button" data-category="homme" aria-pressed="false">Pour lui</button>
+        </div>
+        <p class="catalog-count" id="catalogCount">Sélection AROVIA</p>
+      </div>
+      <div id="apiStatus" class="api-status" role="status" aria-live="polite" hidden></div>
+      <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      <div class="empty-state" id="emptyState" hidden><p>Aucun parfum dans cette catégorie pour le moment.</p></div>
+      <div class="catalog-footnote">Les prix affichés sont en DH. Les frais de livraison sont confirmés avec vous avant l’expédition.</div>
+    </section>
+
+    <section class="brand-story section-shell" id="maison">
+      <div class="story-mark">A<span>.</span></div>
+      <div class="story-copy"><p class="eyebrow">LA MAISON AROVIA</p><h2>Le bon parfum.<br><em>Au bon moment.</em></h2></div>
+      <div class="story-detail"><p>Votre parfum fait partie de votre présence. AROVIA rend les fragrances plus simples à découvrir et à emporter, sans alourdir votre quotidien.</p><a class="text-link" href="#collection">Explorer la sélection <span aria-hidden="true">↗</span></a></div>
+    </section>
+
+    <section class="delivery-section section-shell" id="livraison">
+      <div class="delivery-heading"><p class="eyebrow">SIMPLE, DU CHOIX À LA LIVRAISON</p><h2>Votre prochaine<br><em>signature vous attend.</em></h2></div>
+      <div class="delivery-steps">
+        <article class="delivery-step"><span class="step-number">01</span><h3>Choisissez</h3><p>Parcourez les parfums et les formats disponibles.</p></article>
+        <article class="delivery-step"><span class="step-number">02</span><h3>Commandez</h3><p>Indiquez vos coordonnées. Nous confirmons les détails avec vous.</p></article>
+        <article class="delivery-step"><span class="step-number">03</span><h3>Recevez</h3><p>Les délais et frais sont confirmés selon votre ville.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell" id="contact">
+    <div><a class="wordmark footer-wordmark" href="#top">AROVIA<span class="wordmark-dot">.</span></a><p>Small bottles, big scents.</p></div>
+    <div class="footer-links"><a href="#collection">Collection</a><a href="#livraison">Livraison</a><a href="https://wa.me/212699226164" target="_blank" rel="noopener noreferrer">Nous contacter sur WhatsApp ↗</a></div>
+    <p class="footer-legal">© <span id="currentYear"></span> AROVIA. Tous droits réservés.</p>
+  </footer>
+
+  <div class="drawer-backdrop" id="cartBackdrop" hidden></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-labelledby="cartTitle" aria-hidden="true" inert>
+    <div class="drawer-header"><div><p class="eyebrow">VOTRE SÉLECTION</p><h2 id="cartTitle">Le panier <span id="drawerCount">(0)</span></h2></div><button class="icon-button" id="cartCloseBtn" type="button" aria-label="Fermer le panier">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-empty" id="cartEmpty"><div class="empty-bag">A.</div><h3>Votre panier est vide.</h3><p>Il reste de belles fragrances à découvrir.</p><button class="text-link" id="continueShoppingBtn" type="button">Continuer mes achats ↗</button></div>
+    <div class="cart-summary" id="cartSummary">
+      <div class="summary-row"><span>Sous-total produits</span><strong id="cartSubtotal">0 DH</strong></div>
+      <p class="summary-note">Les frais de livraison seront confirmés avec vous.</p>
+      <button class="button button-dark button-full" id="checkoutOpenBtn" type="button">Passer la commande <span aria-hidden="true">↗</span></button>
+      <p class="secure-note">Commande sans paiement en ligne. Confirmation avec AROVIA.</p>
+    </div>
+  </aside>
+
+  <dialog class="modal checkout-modal" id="checkoutDialog" aria-labelledby="checkoutTitle">
+    <div class="modal-header"><div><p class="eyebrow">DERNIÈRE ÉTAPE</p><h2 id="checkoutTitle">Finaliser la commande</h2></div><button class="icon-button" type="button" data-close-dialog="checkoutDialog" aria-label="Fermer">×</button></div>
+    <p class="modal-intro">Vos coordonnées nous permettent de confirmer la disponibilité, les frais de livraison et le délai.</p>
+    <form id="checkoutForm" class="checkout-form">
+      <div class="form-field"><label for="customerName">Nom complet *</label><input id="customerName" name="name" type="text" autocomplete="name" maxlength="80" required></div>
+      <div class="form-field"><label for="customerPhone">Téléphone *</label><input id="customerPhone" name="phone" type="tel" autocomplete="tel" maxlength="25" placeholder="06 XX XX XX XX" required></div>
+      <div class="form-field"><label for="customerCity">Ville *</label><input id="customerCity" name="city" type="text" autocomplete="address-level2" maxlength="60" required></div>
+      <div class="form-field"><label for="customerAddress">Adresse de livraison *</label><textarea id="customerAddress" name="address" autocomplete="street-address" maxlength="160" rows="2" required></textarea></div>
+      <div class="form-field"><label for="customerNotes">Note (facultatif)</label><textarea id="customerNotes" name="notes" maxlength="300" rows="2" placeholder="Repère, préférence de livraison…"></textarea></div>
+      <div class="honeypot" aria-hidden="true"><label for="website">Ne pas remplir ce champ</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      <div class="checkout-total"><span>Total produits</span><strong id="checkoutSubtotal">0 DH</strong></div>
+      <p class="form-disclaimer">Le total ci-dessus concerne les produits uniquement. Les frais de livraison seront confirmés avant l’expédition.</p>
+      <p id="checkoutMessage" class="form-message" role="status" aria-live="polite" hidden></p>
+      <button class="button button-dark button-full" id="submitOrderBtn" type="submit">Envoyer ma commande <span aria-hidden="true">↗</span></button>
+    </form>
+  </dialog>
+
+  <dialog class="modal receipt-modal" id="receiptDialog" aria-labelledby="receiptTitle">
+    <div class="receipt-symbol">✓</div><p class="eyebrow">DEMANDE ENREGISTRÉE</p><h2 id="receiptTitle">Merci pour votre commande.</h2><p class="receipt-intro" id="receiptIntro">Votre commande a été enregistrée.</p>
+    <div class="receipt-box" id="receiptContent"></div>
+    <a class="button button-dark button-full" id="receiptWhatsApp" href="https://wa.me/212699226164" target="_blank" rel="noopener noreferrer">Confirmer sur WhatsApp ↗</a>
+    <button class="button button-outline button-full" type="button" data-close-dialog="receiptDialog">Retour à la boutique</button>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
