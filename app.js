@@ -25,7 +25,8 @@ const store = {
   cart: readCart(),
   selectedSizes: new Map(),
   busy: false,
-  toastTimer: null
+  toastTimer: null,
+  catalogRefreshing: false
 };
 
 const $ = selector => document.querySelector(selector);
