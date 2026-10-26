@@ -378,7 +378,7 @@ async function resizeImage(file, maxSide, quality) {
   canvas.height = Math.max(1, Math.round(bitmap.height * scale));
   const context = canvas.getContext('2d', { alpha: false });
   if (!context) { bitmap.close && bitmap.close(); throw new Error('Compression d’image indisponible.'); }
-  context.fillStyle = '#ffffff';
+  context.fillStyle = '#f8f6f1';
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
   if (bitmap.close) bitmap.close();
