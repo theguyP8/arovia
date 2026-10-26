@@ -438,26 +438,84 @@ function showToast(message, kind) {
 }
 
 async function refreshCatalog() {
+  if (store.catalogRefreshing) return;
+
+  store.catalogRefreshing = true;
+
   try {
     const response = await apiGet('catalog');
-    if (!Array.isArray(response.products)) throw new Error('Catalogue invalide.');
-    store.catalog = response.products.filter(product => product && typeof product.id === 'string' && product.sizes && typeof product.sizes === 'object');
+
+    if (!Array.isArray(response.products)) {
+      throw new Error('Catalogue invalide.');
+    }
+
+    const newCatalog = response.products.filter(
+      product =>
+        product &&
+        typeof product.id === 'string' &&
+        product.sizes &&
+        typeof product.sizes === 'object'
+    );
+
+    // Check whether the catalogue actually changed.
+    const previousCatalog = JSON.stringify(store.catalog);
+    const updatedCatalog = JSON.stringify(newCatalog);
+
+    store.catalog = newCatalog;
     store.catalogReady = true;
-    const before = store.cart.length;
+
+    // Remove cart items that are no longer available.
+    const previousCartLength = store.cart.length;
+
     store.cart = store.cart.filter(line => {
-      const product = store.catalog.find(item => item.id === line.productId && item.active !== false);
-      return product && Object.prototype.hasOwnProperty.call(product.sizes || {}, line.size);
+      const product = store.catalog.find(
+        item =>
+          item.id === line.productId &&
+          item.active !== false
+      );
+
+      return (
+        product &&
+        Object.prototype.hasOwnProperty.call(
+          product.sizes || {},
+          line.size
+        )
+      );
     });
-    if (before !== store.cart.length) showToast('Le panier a été ajusté selon le catalogue actuel.', 'info');
+
+    if (previousCartLength !== store.cart.length) {
+      showToast(
+        'Le panier a été ajusté selon le catalogue actuel.',
+        'info'
+      );
+    }
+
     saveCart();
     showApiStatus('', 'info');
+
+    // Re-render only when the catalogue has actually changed.
+    if (previousCatalog !== updatedCatalog) {
+      renderProducts();
+      renderCart();
+    }
+
   } catch (_) {
-    store.catalog = FALLBACK_CATALOG;
-    store.catalogReady = false;
-    showApiStatus('Aperçu du catalogue uniquement : le serveur est indisponible. Les commandes sont temporairement désactivées pour éviter les prix obsolètes.', 'error');
+    // Keep the existing catalogue visible if a background
+    // refresh fails. Do not replace it with fallback data.
+    if (!store.catalogReady) {
+      store.catalog = FALLBACK_CATALOG;
+
+      showApiStatus(
+        'Aperçu du catalogue uniquement : le serveur est indisponible. Les commandes sont temporairement désactivées.',
+        'error'
+      );
+
+      renderProducts();
+      renderCart();
+    }
+  } finally {
+    store.catalogRefreshing = false;
   }
-  renderProducts();
-  renderCart();
 }
 
 function wireEvents() {
@@ -504,3 +562,21 @@ wireEvents();
 renderProducts();
 renderCart();
 refreshCatalog();
+// Check for catalogue changes every 10 seconds.
+window.setInterval(() => {
+  if (!document.hidden) {
+    refreshCatalog();
+  }
+}, 10000);
+
+// Refresh as soon as the customer returns to the tab.
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    refreshCatalog();
+  }
+});
+
+// Refresh when the customer returns to the storefront.
+window.addEventListener('focus', () => {
+  refreshCatalog();
+});
