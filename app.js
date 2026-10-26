@@ -10,12 +10,10 @@ const AROVIA_CONFIG = Object.freeze({
 });
 
 const FALLBACK_CATALOG = [
-  { id: 'imperatrice', category: 'femelle', name: "L'Impératrice", description: '', badge: '', sizes: { '10ml': 82, '5ml': 60 }, imageUrl: '', sortOrder: 10, active: true },
-  { id: 'light-blud', category: 'femelle', name: 'Light Blud', description: '', badge: '', sizes: { '10ml': 88, '5ml': 65 }, imageUrl: '', sortOrder: 20, active: true },
-  { id: 'pack-2', category: 'femelle', name: 'Pack 2 × 10 ml', description: '', badge: 'BEST VALUE', sizes: { '2x10ml': 158 }, imageUrl: '', sortOrder: 30, active: true },
-  { id: 'libre', category: 'femelle', name: 'Libre', description: '', badge: '', sizes: { '10ml': 170, '5ml': 89 }, imageUrl: '', sortOrder: 40, active: true },
-  { id: 'stronger-intensely', category: 'homme', name: 'Stronger Intensly With You', description: '', badge: '', sizes: { '10ml': 125, '5ml': 80 }, imageUrl: '', sortOrder: 50, active: true },
-  { id: 'ysl', category: 'homme', name: 'YVES SAINT LAURENT', description: '', badge: '', sizes: { '10ml': 110, '5ml': 70 }, imageUrl: '', sortOrder: 60, active: true }
+  { id: 'imperatrice', category: 'femelle', name: "L'Impératrice", description: '', badge: '', sizes: { '10ml': 88, '5ml': 65 }, imageUrl: '', sortOrder: 10, active: true },
+  { id: 'libre', category: 'femelle', name: 'Yves saint Laurent', description: '', badge: '', sizes: { '10ml': 170, '5ml': 85 }, imageUrl: '', sortOrder: 20, active: true },
+  { id: 'stronger-intensely', category: 'homme', name: 'Stronger Intensly With You', description: '', badge: '', sizes: { '10ml': 125, '5ml': 80 }, imageUrl: '', sortOrder: 30, active: true },
+  { id: 'ysl', category: 'homme', name: 'YVES SAINT LAURENT', description: '', badge: '', sizes: { '10ml': 110, '5ml': 70 }, imageUrl: '', sortOrder: 40, active: true }
 ];
 
 const store = {
