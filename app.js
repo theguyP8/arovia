@@ -19,7 +19,7 @@ const FALLBACK_CATALOG = [
 ];
 
 const store = {
-  catalog: FALLBACK_CATALOG,
+  catalog: [],
   catalogReady: false,
   activeCategory: 'all',
   cart: readCart(),
@@ -560,7 +560,6 @@ function wireEvents() {
 }
 
 wireEvents();
-renderProducts();
 renderCart();
 refreshCatalog();
 // Check for catalogue changes every 10 seconds.
