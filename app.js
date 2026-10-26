@@ -138,6 +138,7 @@ function renderProducts() {
 function createProductCard(product) {
   const card = node('article', 'product-card');
   const visual = node('div', 'product-visual');
+  visual.style.backgroundColor = product.backgroundColor || '#ece7dd';
 
   if (product.imageUrl) {
     const image = node('img');
